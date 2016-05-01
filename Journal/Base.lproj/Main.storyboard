@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HH5-tr-2a5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CA7-mr-iTd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Entries-->
+        <!--Journal-->
         <scene sceneID="rZY-TP-hpX">
             <objects>
                 <tableViewController id="HH5-tr-2a5" customClass="JournalTableViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="mq8-PJ-hP5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryIdentifier" textLabel="1WI-yq-Uv7" detailTextLabel="dUE-1S-7EL" style="IBUITableViewCellStyleValue1" id="5U2-gc-7V7">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -24,18 +26,19 @@
                                             <rect key="frame" x="15" y="12" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUE-1S-7EL">
                                             <rect key="frame" x="543" y="12" width="42" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.75592948717948716" green="0.75592948717948716" blue="0.75592948717948716" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="oIE-vA-us4" kind="show" identifier="toShowEntry" id="sVs-94-Wh2"/>
                                 </connections>
@@ -46,8 +49,13 @@
                             <outlet property="delegate" destination="HH5-tr-2a5" id="JcB-4K-hs2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Entries" id="cNt-vC-che">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4is-Vb-WSF"/>
+                    <navigationItem key="navigationItem" title="Journal" id="cNt-vC-che">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hMo-Pg-wwh">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <segue destination="oIE-vA-us4" kind="show" id="yCN-tC-Wt5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mq8-PJ-hP5" id="MlS-EX-HYK"/>
@@ -57,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="1215" y="427"/>
         </scene>
-        <!--Entry-->
+        <!--Entry Detail View Controller-->
         <scene sceneID="THc-kb-nMq">
             <objects>
-                <viewController id="oIE-vA-us4" sceneMemberID="viewController">
+                <viewController id="oIE-vA-us4" customClass="EntryDetailViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kAV-aP-mbM"/>
                         <viewControllerLayoutGuide type="bottom" id="GRH-qa-0PC"/>
@@ -69,43 +77,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Entry Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NOd-IL-y4q">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Entry Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iin-JD-cwH">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="166" id="OUJ-vX-8DA"/>
-                                    <constraint firstAttribute="width" constant="560" id="jfR-w1-NGH"/>
+                                    <constraint firstAttribute="width" constant="560" id="4EK-8U-EPA"/>
                                 </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="OUJ-vX-8DA"/>
+                                        <exclude reference="4EK-8U-EPA"/>
                                     </mask>
                                 </variation>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-3E-5au">
-                                <rect key="frame" x="20" y="110" width="560" height="325"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuP-pa-Nvv">
+                                <rect key="frame" x="266" y="487" width="68" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="560" id="7Vp-P9-vTb"/>
-                                    <constraint firstAttribute="height" constant="325" id="9v4-0p-EVu"/>
+                                    <constraint firstAttribute="width" constant="68" id="RMd-JX-Ilj"/>
+                                    <constraint firstAttribute="height" constant="30" id="uxX-ee-z1w"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearTextButton:" destination="oIE-vA-us4" eventType="touchUpInside" id="iRf-Oi-IPA"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ril-3E-5au">
+                                <rect key="frame" x="20" y="137" width="560" height="325"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NOd-IL-y4q" firstAttribute="top" secondItem="kAV-aP-mbM" secondAttribute="bottom" constant="8" id="7VN-yq-sFa"/>
-                            <constraint firstItem="Ril-3E-5au" firstAttribute="top" secondItem="NOd-IL-y4q" secondAttribute="bottom" constant="8" id="BXQ-qx-Yig"/>
-                            <constraint firstItem="NOd-IL-y4q" firstAttribute="centerX" secondItem="4dU-uk-oGG" secondAttribute="centerX" id="ESN-4B-h0f"/>
-                            <constraint firstItem="Ril-3E-5au" firstAttribute="centerX" secondItem="4dU-uk-oGG" secondAttribute="centerX" id="U6p-A6-iTt"/>
+                            <constraint firstItem="DuP-pa-Nvv" firstAttribute="centerX" secondItem="4dU-uk-oGG" secondAttribute="centerX" id="0vp-5Y-upI"/>
+                            <constraint firstItem="Ril-3E-5au" firstAttribute="centerY" secondItem="4dU-uk-oGG" secondAttribute="centerY" id="9aW-vB-vYu"/>
+                            <constraint firstItem="DuP-pa-Nvv" firstAttribute="top" secondItem="Ril-3E-5au" secondAttribute="bottom" constant="25" id="I3r-iR-6Pz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iin-JD-cwH" secondAttribute="trailing" id="JpG-LJ-0Yl"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="iin-JD-cwH" secondAttribute="leading" id="cC8-ZR-3yi"/>
+                            <constraint firstItem="Ril-3E-5au" firstAttribute="centerX" secondItem="4dU-uk-oGG" secondAttribute="centerX" id="cSY-9y-XXF"/>
+                            <constraint firstItem="GRH-qa-0PC" firstAttribute="top" secondItem="DuP-pa-Nvv" secondAttribute="bottom" constant="83" id="dSp-o1-xqk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ril-3E-5au" secondAttribute="trailing" id="iNj-sG-tT3"/>
+                            <constraint firstItem="iin-JD-cwH" firstAttribute="top" secondItem="kAV-aP-mbM" secondAttribute="bottom" constant="8" id="icf-PL-BIX"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Ril-3E-5au" secondAttribute="leading" id="jAh-bm-ykJ"/>
+                            <constraint firstItem="iin-JD-cwH" firstAttribute="centerX" secondItem="4dU-uk-oGG" secondAttribute="centerX" id="kDo-K5-OOY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Entry" id="e1H-02-Ubc">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="SEh-h3-pMw"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bDG-aT-saC"/>
+                    <navigationItem key="navigationItem" id="e1H-02-Ubc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bDG-aT-saC">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="saveButton:" destination="oIE-vA-us4" id="BK8-GE-RVw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="entryTextField" destination="Ril-3E-5au" id="jub-W1-uxf"/>
+                        <outlet property="entryTitle" destination="iin-JD-cwH" id="H31-7z-QTA"/>
+                        <outlet property="entryTitleNavigationBar" destination="e1H-02-Ubc" id="3EG-6J-KbI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwY-L8-pC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,4 +165,7 @@
             <point key="canvasLocation" x="403" y="427"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yCN-tC-Wt5"/>
+    </inferredMetricsTieBreakers>
 </document>

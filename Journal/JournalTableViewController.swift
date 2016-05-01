@@ -9,15 +9,16 @@
 import UIKit
 
 class JournalTableViewController: UITableViewController {
-
-
-    @IBOutlet var entryTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+
+
+    @IBOutlet var entryTableView: UITableView!
+    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -45,6 +46,17 @@ class JournalTableViewController: UITableViewController {
         let entry = EntryController.sharedEntryController.entries[indexPath.row]
         
         cell.textLabel?.text = entry.title
+        
+        // Date in detail text label
+        
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+        let convertedDate = dateFormatter.stringFromDate(currentDate)
+        
+        cell.detailTextLabel?.text = convertedDate
+        
         
         
         // Configure the cell...

@@ -217,6 +217,7 @@
 				TargetAttributes = {
 					68816AC31BBB5405000569CE = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 52T93X8W2H;
 					};
 					68816AD71BBB5406000569CE = {
 						CreatedOnToolsVersion = 7.0;
@@ -426,9 +427,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Journal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devmtn.Journal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.syrett;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -437,9 +439,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Journal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devmtn.Journal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.syrett;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

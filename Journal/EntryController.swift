@@ -11,6 +11,8 @@ import Foundation
 
 class EntryController {
     
+    private let entriesKey = "entries"
+    
     static let sharedEntryController = EntryController()
     
     
@@ -31,9 +33,24 @@ class EntryController {
         }
         
     }
+    
+    func loadFromPersistentStorage() {
+        
+        let entryDictionariesFromDefaults = NSUserDefaults.standardUserDefaults().objectForKey(entriesKey) as? [Dictionary<String, AnyObject>]
+        
+        if let entryDictionaries = entryDictionariesFromDefaults {
+            
+            self.entries = entryDictionaries.map({Entry(dictionary: $0)!})
+        }
+    }
+    
+    func saveToPersistentStorage() {
+        
+        let entryDictionaries = self.entries.map({$0.dictionaryCopy()})
+        
+        NSUserDefaults.standardUserDefaults().setObject(entryDictionaries, forKey: entriesKey)
+    }
+    
 }
 
-/*     func createPlaylist(name: String) {
-let playlist = Playlist(name: name)
-playlists.append(playlist)
- */
+
